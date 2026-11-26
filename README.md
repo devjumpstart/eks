@@ -4,6 +4,7 @@
 ![Terraform](https://img.shields.io/badge/Terraform-Infrastructure_as_Code-844FBA?logo=terraform)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?logo=kubernetes&logoColor=white)
 ![Helm](https://img.shields.io/badge/Helm-Package_Management-0F1689?logo=helm)
+[![Terraform CI](https://github.com/devjumpstart/eks/actions/workflows/terraform-ci.yml/badge.svg?branch=main)](https://github.com/devjumpstart/eks/actions/workflows/terraform-ci.yml)
 
 ## Overview
 
@@ -424,6 +425,21 @@ A repository-wide Gitleaks scan returned zero findings after downloaded Terrafor
 
 Validation was performed without connecting to an existing remote state backend or provisioning AWS resources.
 
+### Continuous Integration
+
+GitHub Actions enforces automated validation on pull requests
+and pushes to the main branch.
+
+The pipeline includes:
+
+- Terraform formatting and configuration validation.
+- Backend-independent initialization.
+- Provider dependency lock file enforcement.
+- Parallel validation across all four infrastructure layers.
+- Repository secret scanning with Gitleaks.
+
+Validation runs without AWS credentials or infrastructure provisioning.
+
 ## Scope and Limitations
 
 This repository is a generalized infrastructure reference implementation.
@@ -435,7 +451,7 @@ The following capabilities are outside the current implementation scope:
 - Application deployment and GitOps reconciliation.
 - Centralized observability and alerting.
 - Automated infrastructure testing.
-- Continuous integration and deployment pipelines.
+- Automated infrastructure deployment pipelines.
 - Disaster recovery automation.
 - Comprehensive production security hardening.
 
