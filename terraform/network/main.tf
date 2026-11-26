@@ -1,0 +1,35 @@
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "6.7.3"
+
+  name = "${var.project}-${var.environment}-vpc"
+  cidr = var.vpc_cidr
+
+  # Availability Zones
+  azs = slice(data.aws_availability_zones.available.names, 0, 2)
+
+  # Public subnets - ALB and NAT Gateway
+  public_subnets = var.public_subnets
+
+  # Private subnets - EKS worker nodes
+  private_subnets = var.private_subnets
+
+  # NAT Gateway configuration
+  enable_nat_gateway     = true
+  single_nat_gateway     = var.single_nat_gateway
+  one_nat_gateway_per_az = !var.single_nat_gateway
+
+  # DNS
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
+  # Kubernetes load balancer discovery
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = "1"
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = "1"
+  }
+
+}

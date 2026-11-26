@@ -1,0 +1,15 @@
+aws_region     = "ca-central-1"
+aws_account_id = "123456789012"
+project        = "eks"
+environment    = "dev"
+
+state_bucket      = "your-terraform-state-bucket"
+state_region      = "ca-central-1"
+network_state_key = "eks/network/terraform.tfstate"
+cluster_state_key = "eks/cluster/terraform.tfstate"
+
+kubeconfig_path = "~/.kube/eks-config"
+
+enable_cluster_autoscaler = true
+autoscaler_chart_version  = "9.60.0"
+autoscaler_image_tag      = "v1.37.0"

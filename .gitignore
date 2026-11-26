@@ -1,0 +1,41 @@
+# Terraform working directories
+**/.terraform/*
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan
+
+# Local variable values
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Local backend configuration
+backend.hcl
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Credentials and environment files
+.env
+.env.*
+*.pem
+*.key
+*kubeconfig*
+.aws/
+.kube/
+
+# Local editor and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
